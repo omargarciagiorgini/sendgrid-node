@@ -5,8 +5,9 @@ const sgMail = require('../services/sendgrid')
 const router = express.Router()
 const { validationResult } = require('express-validator'); 
 const { validateEmailRequest } = require('../middlewares/validation');
-
-router.post('/api/mail', upload.array('attachments'), validateEmailRequest, async(req, res)=>{
+const { auth } = require('../middlewares/auth');
+const { login } = require('../controller/authController');
+router.post('/api/mail',auth, upload.array('attachments'), validateEmailRequest, async(req, res)=>{
 //console.log(req.body);
     const errors = validationResult(req);
 
@@ -35,6 +36,9 @@ router.post('/api/mail', upload.array('attachments'), validateEmailRequest, asyn
     
    res.status(201).send({success: true});
 })
+
+router.post('/login', login);
+
 router.get('/api/info', (req, res) => {
     console.log('anda');
     return res.status(200).send({status:'ok'})
