@@ -7,6 +7,8 @@ const { validationResult } = require('express-validator');
 const { validateEmailRequest } = require('../middlewares/validation');
 const { auth } = require('../middlewares/auth');
 const { login } = require('../controller/authController');
+require('dotenv').config();
+
 router.post('/api/mail',auth, upload.array('attachments', 5), validateEmailRequest, async(req, res)=>{
 //console.log(req.body);
     const errors = validationResult(req);
@@ -26,7 +28,7 @@ router.post('/api/mail',auth, upload.array('attachments', 5), validateEmailReque
       const msg = {
         to: req.body.to,
         cc: ccArray,
-        from:'omar@avalith.net',
+        from:process.env.SENDER_EMAIL,
         subject: req.body.subject,
         text: req.body.text,
         html: req.body.html,
@@ -41,7 +43,7 @@ router.post('/api/mail',auth, upload.array('attachments', 5), validateEmailReque
    res.status(200).send({ success: true , message: "Email sent successfully"});
 })
 
-router.post('/login', login);
+router.post('/api/login', login);
 
 router.get('/api/info', (req, res) => {
     console.log('anda');

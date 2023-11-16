@@ -5,9 +5,10 @@ const app = require('../app');
 const authMiddleware = require('../middlewares/auth');
 const { PDFDocument } = require('pdf-lib');
 const fs = require('fs').promises;
+require('dotenv').config();
 
 jest.mock('../middlewares/auth');
-// Function to create a fake PDF file
+
 async function createFakePdf(filePath) {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage();
@@ -22,12 +23,10 @@ async function createFakePdf(filePath) {
     console.log(`Fake PDF created at: ${filePath}`);
   }
   
-// Replace 'your-secret-key' with your actual secret key for signing the token
-const secretKey = 'oh9d3hd97gf0g0g0gh0h0n0n0'
+const secretKey = process.env.TOKEN_SECRET
 
 const mockToken = jwt.sign({ userId: 'mockUserId' }, secretKey);
 
-// Mock the auth function
 authMiddleware.auth.mockImplementation((req, res, next) => {
   req.userId = 'mockUserId';
   next();
