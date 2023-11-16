@@ -1,6 +1,6 @@
 # Node.js
 node_modules/
-
+test.pdf
 # Dependency directories
 package-lock.json
 npm-debug.log

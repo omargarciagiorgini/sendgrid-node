@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "d812b075-dbf2-4468-98ab-357fb378ed49",
+		"name": "sendgrid-node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4634723"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/mail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoib21hciIsImlhdCI6MTcwMDE0MzU5MywiZXhwIjoxNzAwMTQ3MTkzfQ.qJsAkccMLkduzs8gGIiEeOYNHWXhpCO3l1PToi22VQ4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachments",
+							"type": "file",
+							"src": "/home/omar/Documentos/CamilaGambier.pdf"
+						},
+						{
+							"key": "to",
+							"value": "omar.garcia.giorgini@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "subject",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "subida archivo pdf",
+							"type": "text"
+						},
+						{
+							"key": "attachments",
+							"type": "file",
+							"src": "/home/omar/Documentos/ProteccionDVD-AKAI.pdf"
+						},
+						{
+							"key": "cc",
+							"value": "omar.garcia@fi.mdp.edu.ar",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/mail",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/info",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"username\":\"omar\",\n    \"password\":\"Avapass123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
