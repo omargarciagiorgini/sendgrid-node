@@ -31,6 +31,11 @@ authMiddleware.auth.mockImplementation((req, res, next) => {
   req.userId = 'mockUserId';
   next();
 });
+afterAll(async () => {
+  // Clean up the fake PDF file
+  const fakePdfFilePath = './test.pdf';
+  await fs.unlink(fakePdfFilePath);
+});
 it('Returns 200 for a successful request', async () => {
     const resp = await request(app)
       .post('/api/mail')
